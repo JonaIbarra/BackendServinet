@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Configuración de la conexión a la base de datos
-DATABASE_URL = "mysql+pymysql://root:1234@localhost/backendservinet"
+DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_EKDs0CiGYRqSrfjYO6j@backendservinet-animateibarra97-5f64.g.aivencloud.com/defaultdb"
 
 # Crear el motor de la base de datos
 engine = create_engine(DATABASE_URL)
