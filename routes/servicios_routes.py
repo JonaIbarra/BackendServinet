@@ -29,11 +29,11 @@ def obtener_servicios_por_ID(id: int, db: Session = Depends(get_db)):
     return db_servicios
 
 @servicios_routes.post("/servicios", response_model=schemas.Servicios)
-def crear_servicios(personas: schemas.ServiciosCreate, db: Session = Depends(get_db)):
-    db_servicios = crud.obtener_servicios_por_ID(db=db, id=personas.id)
+def crear_servicios(servicio: schemas.ServiciosCreate, db: Session = Depends(get_db)):
+    db_servicios = crud.validar_servicio_existente(db=db, nombre=servicio.nombre, sucursal_id=servicio.sucursal_id)
     if db_servicios:
         raise HTTPException(status_code=400, detail="El servicio ya existe")
-    return crud.crear_servicios(db=db, personas=personas)
+    return crud.crear_servicios(db=db, servicios=servicio)
 
 @servicios_routes.put("/servicios/{id}", response_model=schemas.Servicios)
 def actualizar_servicios(id: int, personas: schemas.ServiciosUpdate, db: Session = Depends(get_db)):

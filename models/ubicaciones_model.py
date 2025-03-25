@@ -7,13 +7,16 @@ class Ubicaciones(Base):
     __tablename__ = "tbb_ubicaciones"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    codigo_postal = Column(String(5))
-    calle = Column(String(255))
-    numero = Column(String(45))
+    pais = Column(String(45))
+    estado = Column(String(45))
+    ciudad = Column(String(45))
     colonia = Column(String(45))
-    referencia = Column(String(255))
-    contacto = Column(String(45))
+    calle = Column(String(45))
+    numero_exterior = Column(String(10))
+    numero_interior = Column(String(10))
+    codigo_postal = Column(String(10))
     estatus = Column(SmallInteger)
-    fecha_registro = Column(DateTime, default=datetime)
-    fecha_ultima_actualizacion = Column(DateTime, default=datetime)
+    fecha_registro = Column(DateTime, default=datetime.now())
+    fecha_ultima_actualizacion = Column(DateTime, default=datetime.now(), onupdate=datetime.now())
+    referencias = Column(String(255))
     

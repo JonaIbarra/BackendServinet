@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, SmallInteger, String
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, SmallInteger, String, func
 from config.db import Base
 
 
@@ -13,6 +13,6 @@ class Usuario(Base):
     numero_telefono_movil = Column(String(10))
     contrasenia = Column(String(300))
     estatus = Column(SmallInteger)
-    fecha_registro = Column(DateTime, default=datetime)
-    fecha_ultimo_acceso = Column(DateTime, default=datetime)
+    fecha_registro = Column(DateTime, default=func.now())
+    fecha_ultimo_acceso = Column(DateTime, default=func.now(), onupdate=func.now())
 

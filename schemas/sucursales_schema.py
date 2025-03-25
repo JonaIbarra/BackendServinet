@@ -2,27 +2,33 @@ from datetime import datetime
 from typing import Literal
 from pydantic import BaseModel
 
+from schemas.horarios_schema import HorariosCreate
+from schemas.ubicaciones_schema import UbicacionesCreate
+
 
 class SucursalesBase(BaseModel):
-    id : int
-    nombre : str
-    empresa : str
-    telefono : str
-    correo_electronico : str
-    estatus : Literal[0, 1]
-    fecha_registro : datetime
-    fecha_ultima_actualizacion : datetime
-    horario_ID: int
-    ubicacion_ID: int
 
-class SucursalesCreate(SucursalesBase):
-    pass
+
+    nombre: str
+    telefono: str
+    correo: str
+    estatus: Literal[0, 1]
+    
+    
+
+
+class SucursalesCreate(BaseModel):
+    datos_sucursal: SucursalesBase
+    datos_horario: HorariosCreate
+    datos_ubicacion: UbicacionesCreate
+
 
 class SucursalesUpdate(SucursalesBase):
     pass
 
 class Sucursales(SucursalesBase):
+    
+    id: int
     class Config:
         orm_mode = True
-        horario_ID: int
-        ubicacion_ID: int
+      

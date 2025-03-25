@@ -7,8 +7,8 @@ from services.auth import hash_password
 def obtener_todos_los_usuarios(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Usuario).offset(skip).limit(limit).all()
 
-def obtener_usuario_por_ID(db: Session, id: int):
-    return db.query(Usuario).filter(Usuario.id == id).first()
+def obtener_usuario_por_nombre(db: Session, nombre_usuario: str):
+    return db.query(Usuario).filter(Usuario.nombre_usuario == nombre_usuario).first()
 
 def get_user_by_creentials(db: Session, username: str, password: str):
     return db.query(Usuario).filter((Usuario.nombre_usuario == username),
@@ -23,8 +23,6 @@ def crear_usuario(db: Session, usuario: schemas.UsuarioCreate):
         correo_electronico=usuario.correo_electronico,
         numero_telefono_movil=usuario.numero_telefono_movil,
         contrasenia=hashed_password,  # Guarda la contraseña encriptada
-        fecha_registro=usuario.fecha_registro,
-        fecha_ultimo_acceso=usuario.fecha_ultimo_acceso,
         estatus=usuario.estatus
     )
     db.add(db_usuario)

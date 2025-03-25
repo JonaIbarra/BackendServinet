@@ -17,8 +17,13 @@ from routes.categorias_routes import categorias_routes
 from routes.medio_contactos_routes import medio_contactos_router
 from routes.cancelaciones_routes import cancelaciones_routes
 from config.db import engine, Base
+from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(
+    title="API Servinet",  # Título de la API
+    version="1.0.0",
+    description="Documentación de la API de Servinet"
+)
 
 
 @app.get("/")

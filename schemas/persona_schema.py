@@ -2,7 +2,6 @@ from datetime import datetime
 from enum import Enum
 from typing import Union
 from pydantic import BaseModel
-
 from schemas.persona_fisica_schema import PersonaFisicaCreate
 from schemas.persona_moral_schema import PersonaMoralCreate
 

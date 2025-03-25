@@ -3,7 +3,7 @@ from sqlite3 import IntegrityError
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from models.persona_fisica_model import Personas_Fisicas
-from models.persona_model import Personas, TipoPersonaEnum
+from models.persona_model import Personas
 from models.persona_moral_model import Personas_Moral
 from schemas import persona_schema as schemas
 
@@ -34,7 +34,7 @@ def crear_persona(db: Session, persona: schemas.PersonaCreate):
 
 def crear_persona_completa(db: Session, persona_data: schemas.PersonaCreate):
     try:
-        # Crear registro en Personas (no se necesita db.begin())
+        # Crear registro en Personas 
         db_persona = Personas(
             tipo=persona_data.tipo,
             rfc=persona_data.datos_generales.rfc,

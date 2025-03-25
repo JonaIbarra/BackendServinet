@@ -1,19 +1,19 @@
 from datetime import datetime, time
 from typing import Literal
 from pydantic import BaseModel
+from models.horarios_model import DiasEnum
 
 
 class HorariosBase(BaseModel):
-    id : int
-    dia : str
-    hora_inicio : datetime
-    hora_fin : datetime
-    estatus : Literal[0, 1]
-    descripcion : str
-    fecha_registro : datetime
-    fecha_ultima_actualizacion : datetime
-    horario_apertura : time
-    horario_cierre : time
+
+    dia_semana: DiasEnum
+    hora_apertura: time
+    hora_cierre: time
+    es_cerrado: Literal[0, 1]
+    estatus: Literal[0, 1]
+
+
+    
 
 
 class HorariosCreate(HorariosBase):
@@ -23,7 +23,7 @@ class HorariosUpdate(HorariosBase):
     pass
 
 class Horarios(HorariosBase):
+    id : int
     class Config:
         orm_mode = True
-        horario_apertura : time
-        horario_cierre : time
+    
