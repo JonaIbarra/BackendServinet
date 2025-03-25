@@ -35,11 +35,11 @@ def obtener_usuario_por_ID(id: int, db: Session = Depends(get_db)):
 
 
 @usuario_routes.post("/usuarios", response_model=schemas.Usuario)
-def crear_usuario(usuario: schemas.UsuarioCreate, db: Session = Depends(get_db)):
+def registrar_usuario(usuario: schemas.UsuarioCreate, db: Session = Depends(get_db)):
     db_usuario = crud.obtener_usuario_por_nombre(db=db, nombre_usuario = usuario.nombre_usuario)
     if db_usuario:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
-    return crud.crear_usuario(db=db, usuario=usuario)
+    return crud.registrar_usuario(db=db, usuario=usuario)
 
 
 

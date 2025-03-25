@@ -6,8 +6,16 @@ from schemas import rol_schema as schemas
 def obtener_todos_los_roles(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Rol).offset(skip).limit(limit).all()
 
-def obtener_rol_por_ID(db: Session, id: int):
-    return db.query(Rol).filter(Rol.id == id).first()
+def obtener_rol_por_nombre(db: Session, nombre_rol: str) -> Rol:
+    rol = db.query(Rol).filter(Rol.nombre_rol == nombre_rol).first()
+    return rol
+
+def crear_rol_predeterminado(db: Session, nombre_rol: str) -> Rol:
+    nuevo_rol = Rol(nombre_rol=nombre_rol, descripcion="Rol predeterminado")
+    db.add(nuevo_rol)
+    db.commit()
+    db.refresh(nuevo_rol)
+    return nuevo_rol
 
 def crear_rol(db: Session, rol: schemas.RolCreate):
     db_rol = Rol(**rol.dict())

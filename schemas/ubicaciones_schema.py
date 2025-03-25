@@ -13,6 +13,8 @@ class UbicacionesBase(BaseModel):
     numero_exterior: str
     numero_interior: str
     codigo_postal: str
+    latitud: float
+    longitud: float
     estatus: Literal[0, 1]
     referencias: str
 
