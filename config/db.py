@@ -3,7 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # OJO: Elimina ?ssl_mode=REQUIRED de la URL porque pymysql NO lo soporta
-DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_g-tqDl-Sn2nan3BXlnj@mysql-22a90db5-e19063584-e1b0.g.aivencloud.com:22520/defaultdb"
+DATABASE_URL = "mysql://avnadmin:AVNS_g-tqDl-Sn2nan3BXlnj@mysql-22a90db5-ei9063584-e1b0.g.aivencloud.com:22520/defaultdb?ssl-mode=REQUIRED"
+
 
 # Crear el motor de la base de datos con el argumento SSL
 engine = create_engine(
