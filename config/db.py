@@ -2,16 +2,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Configuración de la conexión a la base de datos
-DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_g-tqDl-Sn2nan3BXlnj@mysql-22a90db5-e19063584-e1b0.g.aivencloud.com:22520/defaultdb?ssl_mode=REQUIRED"
+# OJO: Elimina ?ssl_mode=REQUIRED de la URL porque pymysql NO lo soporta
+DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_g-tqDl-Sn2nan3BXlnj@mysql-22a90db5-e19063584-e1b0.g.aivencloud.com:22520/defaultdb"
 
-
-# Crear el motor de la base de datos
-engine = create_engine(DATABASE_URL)
-
+# Crear el motor de la base de datos con el argumento SSL
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"ssl": {}}
+)
 
 # Crear una sesión
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Función para obtener una sesión de base de datos
+# Declarativa base
 Base = declarative_base()
