@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, DateTime, Integer, SmallInteger, String, DECIMAL
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, SmallInteger, String, DECIMAL
 from config.db import Base
 
 
@@ -18,7 +18,9 @@ class Ubicaciones(Base):
     latitud = Column(DECIMAL(10,8))
     longitud = Column(DECIMAL(11,8))
     estatus = Column(SmallInteger)
+    sucursal_id = Column(Integer, ForeignKey("tbb_sucursales.id"), nullable=False)
     fecha_registro = Column(DateTime, default=datetime.now())
     fecha_ultima_actualizacion = Column(DateTime, default=datetime.now(), onupdate=datetime.now())
+    
     referencias = Column(String(255))
     

@@ -16,6 +16,7 @@ class ServiciosBase(BaseModel):
     fecha_actualizacion: datetime
     estatus: Literal[0, 1]
     sucursal_id: int
+    categoria_id: int
     
 
 

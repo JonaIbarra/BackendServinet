@@ -11,6 +11,10 @@ def obtener_todas_las_categorias(db: Session, skip: int = 0, limit: int = 10):
 def obtener_categorias_por_ID(db:Session, id: int):
     return db.query(Categorias).filter(Categorias.id == id).first()
 
+def validar_categoria_existente(db: Session, nombre: str):
+    return  db.query(Categorias).filter(Categorias.nombre == nombre).first()
+    
+
 def crear_categorias(db: Session, categorias):
     db_categorias = Categorias(**categorias.dict())
     db.add(db_categorias)

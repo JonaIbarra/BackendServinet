@@ -7,9 +7,7 @@ class Sucursales(Base):
     nombre = Column(String(100), nullable=False)
     telefono = Column(String(10), nullable=False)
     correo = Column(String(50), nullable=False)
-    ubicacion_id = Column(Integer, ForeignKey("tbb_ubicaciones.id"), nullable=False)
-    horario_id = Column(Integer, ForeignKey("tbb_horarios.id"), nullable=False)
-    fecha_creacion = Column(DateTime, default=func.now())
-    fecha_modificacion = Column(DateTime, default=func.now())
+    fecha_registro = Column(DateTime, default=func.now())
+    fecha_modificacion = Column(DateTime, default=func.now(), onupdate=func.now()) 
     estatus = Column(SmallInteger, default=1)
     

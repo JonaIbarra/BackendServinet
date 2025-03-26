@@ -14,33 +14,48 @@ def obtener_todas_las_sucursales(db: Session, skip: int = 0, limit: int = 10):
 def obtener_sucursales_por_ID(db: Session, id: int):
     return db.query(Sucursales).filter(Sucursales.id == id).first()
 
-def obtener_sucursal_por_nombre_y_ubicacion(db: Session, nombre: str, ubicacion_id: int):
-    return db.query(Sucursales).filter(
-        Sucursales.nombre == nombre,
-        Sucursales.ubicacion_id == ubicacion_id
-    ).first()
+def obtener_sucursal_por_nombre_y_ubicacion(db: Session, nombre: str):
+    return db.query(Sucursales).filter(Sucursales.nombre == nombre).first()
 
 
 
 def crear_sucursal_completa(sucursal: schemas.SucursalesCreate, db: Session):
     try:
-    
-        db_ubicaciones = Ubicaciones(**sucursal.datos_ubicacion.dict())
-        db.add(db_ubicaciones)
-        db.flush()
-        
-        db_horarios = Horarios(**sucursal.datos_horario.dict())
-        db.add(db_horarios)
-        db.flush()
-        
-        db_sucursales = Sucursales(
-        ubicacion_id=db_ubicaciones.id,
-        horario_id=db_horarios.id,
-        **sucursal.datos_sucursal.dict())
+        # 1. Crear la sucursal
+        db_sucursales = Sucursales(**sucursal.datos_sucursal.dict())
         db.add(db_sucursales)
+        db.flush()  # Genera el ID de la sucursal
+
+        # 2. Crear la ubicación
+        db_ubicaciones = Ubicaciones(
+            sucursal_id=db_sucursales.id,
+            **sucursal.datos_ubicacion.dict()
+        )
+        db.add(db_ubicaciones)
+
+        # 3. Crear los 7 horarios (uno por día)
+        dias = [
+            sucursal.lunes,
+            sucursal.martes,
+            sucursal.miercoles,
+            sucursal.jueves,
+            sucursal.viernes,
+            sucursal.sabado,
+            sucursal.domingo
+        ]
+
+        for horario_dia in dias:
+            db_horario = Horarios(
+                sucursal_id=db_sucursales.id,
+                **horario_dia.dict()
+            )
+            db.add(db_horario)
+
+        # 4. Confirmar todo en la base de datos
         db.commit()
         db.refresh(db_sucursales)
         return db_sucursales
+
     
 
 

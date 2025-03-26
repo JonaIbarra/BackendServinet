@@ -16,3 +16,4 @@ class Usuario(Base):
     fecha_registro = Column(DateTime, default=func.now())
     fecha_ultimo_acceso = Column(DateTime, default=func.now(), onupdate=func.now())
 
+

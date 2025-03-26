@@ -31,21 +31,21 @@ def obtener_sucursales_por_ID(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="La sucursal no existe")
     return sucursales_routes
 
-@sucursales_routes.post("/sucursales", response_model=schemas.Sucursales)
-def crear_sucursales(sucursales: schemas.SucursalesCreate, db: Session = Depends(get_db)):
-    db_sucursales = crud.obtener_sucursal_por_nombre_y_ubicacion(db=db, nombre=sucursales.nombre, ubicacion_id=sucursales.id_ubicacion)
-    if db_sucursales:
-        raise HTTPException(status_code=400, detail="La sucursal ya existe")
-    return crud.crear_sucursales(db=db, sucursales=sucursales)
+# @sucursales_routes.post("/sucursales", response_model=schemas.Sucursales)
+# def crear_sucursales(sucursales: schemas.SucursalesCreate, db: Session = Depends(get_db)):
+#     db_sucursales = crud.obtener_sucursal_por_nombre_y_ubicacion(db=db, nombre=sucursales.datos_sucursal.nombre)
+#     if db_sucursales:
+#         raise HTTPException(status_code=400, detail="La sucursal ya existe")
+#     return crud.crear_sucursales(db=db, sucursales=sucursales)
 
 
 @sucursales_routes.post("/registro_sucursal", response_model=schemas.Sucursales)
-def crear_sucursal(
-    sucursales: schemas.SucursalesCreate, 
-    db: Session = Depends(get_db)):
-    
-    db_sucursales = crud.crear_sucursal_completa(db=db, sucursal=sucursales)
-    return db_sucursales
+def crear_sucursal(sucursales: schemas.SucursalesCreate, db: Session = Depends(get_db)):
+    db_sucursales = crud.obtener_sucursal_por_nombre_y_ubicacion(db=db, nombre=sucursales.datos_sucursal.nombre)
+    if db_sucursales:
+        raise HTTPException(status_code=400, detail="La sucursal ya existe")
+    return crud.crear_sucursal_completa(db=db, sucursal=sucursales)
+
 
 
 @sucursales_routes.put("/sucursales/{id}", response_model=schemas.Sucursales)

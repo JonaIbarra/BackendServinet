@@ -17,7 +17,7 @@ class UsuarioBase(BaseModel):
     correo_electronico : str
     numero_telefono_movil : str
     contrasenia : str
-    estatus : Literal[0, 1]
+    estatus : Literal[0, 1] = 1
 
 
 

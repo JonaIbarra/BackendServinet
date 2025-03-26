@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, Numeric, SmallInteger, String, Text
+from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, Numeric, SmallInteger, String, Text, func
 
 from config.db import Base
 
@@ -14,8 +14,10 @@ class Servicios(Base):
     duracion = Column(Numeric(10,2), nullable=False)
     precio = Column(Float, nullable=False)
     tipo_servicio = Column(String(50), nullable=False)
-    fecha_registro = Column(DateTime, default=datetime.now())
-    fecha_actualizacion = Column(DateTime, default=datetime.now())
+    fecha_registro = Column(DateTime, default=func.now())
+    fecha_actualizacion = Column(DateTime, default=func.now(), onupdate=func.now()) 
     estatus = Column(SmallInteger, default=1)
     sucursal_id = Column(Integer, ForeignKey("tbb_sucursales.id"), nullable=False)
+    categoria_id = Column(Integer, ForeignKey("tbb_categorias.id"), nullable=False)
+    
     

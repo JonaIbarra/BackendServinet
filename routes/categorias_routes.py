@@ -19,16 +19,16 @@ def obtener_todas_las_categorias(skip: int = 0, limit: int = 10, db: Session = D
     db_categorias = crud.obtener_todas_las_categorias(db=db, skip=skip, limit=limit)
     return db_categorias
 
-@categorias_routes.get("/categorias/{id}", response_model=schemas.Categorias)
-def obtener_categorias_por_ID(id: int, db: Session = Depends(get_db)):
-    db_categorias = crud.obtener_categorias_por_ID(db=db, id=id)
+@categorias_routes.get("/categorias/{nombre}", response_model=schemas.Categorias)
+def validar_categoria_existente(nombre: str, db: Session = Depends(get_db)):
+    db_categorias = crud.validar_categoria_existente(db=db, nombre =nombre)
     if db_categorias is None:
         raise HTTPException(status_code=404, detail="La Categoria no existe")
     return db_categorias
 
 @categorias_routes.post("/categorias", response_model=schemas.Categorias)
 def crear_categorias(categorias: schemas.CategoriasCreate, db: Session = Depends(get_db)):
-    db_categorias = crud.obtener_categorias_por_ID(db=db, id=db_categorias.id)
+    db_categorias = crud.validar_categoria_existente(db=db, nombre=categorias.nombre)
     if db_categorias:
         raise HTTPException(status_code=400, detail="La categoria ya existe")
     return crud.crear_categorias(db=db, categorias =categorias)
