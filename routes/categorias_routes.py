@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
-from requests import Session
+from sqlalchemy.orm import Session
 from crud import categorias_crud as crud
 from schemas import categorias_schema as schemas
 from config.db import SessionLocal

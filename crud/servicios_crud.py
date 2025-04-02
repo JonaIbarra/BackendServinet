@@ -10,6 +10,22 @@ def obtener_todas_los_servicios(db: Session, skip: int = 0, limit: int = 10):
 def obtener_servicios_por_ID(db: Session, id: int):
     return db.query(Servicios).filter(Servicios.id == id).first()
 
+def obtener_servicios_disonibles(db: Session):
+    return db.query(Servicios).filter(Servicios.estatus == 1).all()
+
+def obtener_servicios_por_categoria(db: Session, categoria_id: int):
+    return db.query(Servicios).filter(Servicios.categoria_id == categoria_id, Servicios.estatus == 1).all()
+
+def obtener_servicios_por_sucursal(db: Session, sucursal_id: int):
+    return db.query(Servicios).filter(Servicios.sucursal_id == sucursal_id).all()
+
+def obtener_servicios_por_precios(db: Session):
+    return db.query(Servicios).filter(Servicios.estatus == 1).order_by(Servicios.precio.asc()).all()
+
+
+
+
+
 def validar_servicio_existente(db: Session, nombre: str, sucursal_id: int):
     db_servicio = db.query(Servicios).filter(
         Servicios.nombre == nombre,

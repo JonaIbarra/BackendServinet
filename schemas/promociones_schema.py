@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class PromocionesBase(BaseModel):
-    id: int
+   
     titulo: str
     descripcion: str
     relacion: str
@@ -12,8 +12,6 @@ class PromocionesBase(BaseModel):
     estatus: Literal[0, 1]
     hora_inicio: datetime
     hora_fin: datetime
-    fecha_registro: datetime
-    fecha_ultima_actualizacion: datetime
     servicio_ID: int
 
 class PromocionesCreate(PromocionesBase):
@@ -24,7 +22,7 @@ class   PromocionesUpdate(PromocionesBase):
 
 
 class Promociones(PromocionesBase):
-    
+    id: int
     class Config:
         orm_mode = True
         

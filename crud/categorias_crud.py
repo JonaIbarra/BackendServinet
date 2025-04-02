@@ -3,8 +3,6 @@ from models.categorias_model import Categorias
 from schemas import categorias_schema as schemas
 
 
-
-
 def obtener_todas_las_categorias(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Categorias).offset(skip).limit(limit).all()
 

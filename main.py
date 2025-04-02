@@ -16,6 +16,7 @@ from routes.promociones_routes import promociones_routes
 from routes.categorias_routes import categorias_routes
 from routes.medio_contactos_routes import medio_contactos_router
 from routes.cancelaciones_routes import cancelaciones_routes
+from routes.canjes_routes import canjes_routes
 from config.db import engine, Base
 from fastapi import FastAPI
 
@@ -51,6 +52,7 @@ app.include_router(promociones_routes, tags=["Promociones"])
 app.include_router(categorias_routes, tags=["Categorias"])
 app.include_router(medio_contactos_router, tags=["Medio Contactos"])
 app.include_router(cancelaciones_routes, tags=["Cancelaciones"])
+app.include_router(canjes_routes, tags=["Canjes"])
 
 
 

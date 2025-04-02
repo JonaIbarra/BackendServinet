@@ -2,7 +2,7 @@ from fastapi import HTTPException, Request, Depends
 from fastapi.security import HTTPBearer
 from sqlalchemy.orm import Session
 from services.auth import valida_token
-import crud.usuario_crud, config.db, models.usuario_model
+import crud.usuario_crud, config.db
 
 
 

@@ -44,8 +44,8 @@ def actualizar_personas_morales(id: int, personas: schemas.PersonaMoralUpdate, d
 
 @persona_moral_routes.delete("/personas_morales/{id}", response_model=schemas.PersonaMoral)
 def eliminar_personas_morales(id: int, db: Session = Depends(get_db)):
-    db_pesona_moral = crud.eliminar_personas_morales(db=db, id=id)
-    if db_pesona_moral is None:
+    db_persona_moral = crud.eliminar_personas_morales(db=db, id=id)
+    if db_persona_moral is None:
         raise HTTPException(status_code=404, detail="La persona no existe")
-    return  db_pesona_moral
+    return  db_persona_moral
 

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, SmallInteger, String, Time, Enum
+from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, SmallInteger, String, Time, Enum, func
 from config.db import Base
 import enum
 
@@ -23,8 +23,8 @@ class Horarios(Base):
     hora_apertura = Column(Time, nullable=False)
     hora_cierre = Column(Time, nullable=False)
     sucursal_id = Column(Integer, ForeignKey("tbb_sucursales.id"), nullable=False)
-    fecha_creacion = Column(DateTime, default=datetime.now())
-    fecha_modificacion = Column(DateTime, default=datetime.now())
+    fecha_registro = Column(DateTime, default=func.now())
+    fecha_actualizacion = Column(DateTime, default=func.now(), onupdate=func.now())
     es_cerrado = Column(SmallInteger, default=0)
     estatus = Column(SmallInteger, default=1)
     

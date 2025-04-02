@@ -31,7 +31,7 @@ def obtener_citas_por_ID(id: int, db: Session = Depends(get_db)):
 
 @citas_routes.post("/citas", response_model=schemas.Citas)
 def crear_citas(citas: schemas.CitasCreate, db: Session = Depends(get_db)):
-    db_citas = crud.obtener_citas_por_ID(db=db, id=citas.id)
+    db_citas = crud.verificar_cita_por_dia(db=db, fecha=citas.fecha_inicio, usuario_id=citas.usuario_ID)    
     if db_citas:
         raise HTTPException(status_code=400, detail="La cita ya existe")
     return crud.crear_cita(db=db, citas=citas)
