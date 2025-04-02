@@ -29,36 +29,17 @@ def obtener_persona_por_ID(id: int, db: Session = Depends(get_db)):
     return db_persona
 
 
-# @persona_routes.post("/personas", response_model=schemas.Persona)  # Response SI incluye id
-# def crear_persona(
-#     persona: schemas.PersonaCreate,  
-#     db: Session = Depends(get_db)
-# ):
 
-#     db_persona = crud.obtener_persona_por_CURP(db, persona.CURP)
-#     if db_persona:
-#         raise HTTPException(status_code=400, detail="La CURP ya está registrada")
-    
-#     return crud.crear_persona(db=db, persona=persona)
-
-# @persona_routes.post("/personas", response_model=schemas.Persona)
-# def crear_personas(personas: schemas.PersonaCreate, db: Session = Depends(get_db)):
-#     db_persona = crud.obtener_persona_por_rfc(db=db, rfc=personas.rfc)
-#     if db_persona:
-#         raise HTTPException(status_code=400, detail="La persona ya existe")
-#     return crud.crear_persona(db=db, persona = personas)  
 
 @persona_routes.post("/personas", response_model=schemas.Persona)
 def crear_personas(
-    personas: schemas.PersonaCreate, 
+    personas: schemas.PersonaSimpleCreate, 
     db: Session = Depends(get_db)
 ):
-    db_persona = crud.obtener_persona_por_rfc(db=db, rfc=personas.datos_generales.rfc)
+    db_persona = crud.obtener_persona_por_rfc(db=db, rfc=personas.rfc)
     if db_persona:
         raise HTTPException(status_code=400, detail="La persona ya existe")
-    
-    persona_creada = crud.crear_persona(db=db, persona=personas)
-    return persona_creada  #
+    return crud.crear_persona(db=db, persona=personas)
 
 
 @persona_routes.post("/registro", response_model=dict)

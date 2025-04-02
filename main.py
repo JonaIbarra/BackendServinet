@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from config.init_db import init_db
 from routes.usuarios_direcciones_routes import usuario_direcciones_routes
 from routes.persona_moral_routes import persona_moral_routes
 from routes.persona_fisica_routes import persona_fisica_routes
@@ -25,6 +26,12 @@ app = FastAPI(
     version="1.0.0",
     description="Documentación de la API de Servinet"
 )
+
+
+# Crear todas las tablas
+Base.metadata.create_all(bind=engine)
+# Inicializar los roles al iniciar la aplicación
+init_db()
 
 
 @app.get("/")
@@ -57,6 +64,3 @@ app.include_router(canjes_routes, tags=["Canjes"])
 
 
 
-
-# Crear todas las tablas
-Base.metadata.create_all(bind=engine)

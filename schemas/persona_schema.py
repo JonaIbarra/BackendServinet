@@ -11,7 +11,11 @@ class TipoPersonaEnum(str, Enum):
 
 class PersonaBase(BaseModel):
     rfc: str
-    estatus: int 
+    estatus: int = 1
+    
+class PersonaSimpleCreate(PersonaBase):
+    pass
+    tipo: TipoPersonaEnum
 
 
 # Esquema combinado para el formulario
@@ -26,8 +30,7 @@ class PersonaUpdate(PersonaBase):
 class Persona(PersonaBase):
     id: int
     tipo: str
-    fecha_registro: datetime
-    fecha_actualizacion: datetime
+
 
     class Config:
         from_attributes = True  

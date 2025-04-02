@@ -34,3 +34,20 @@ def obtener_usuario_rol_por_usuario_ID(id: int, db: Session = Depends(get_db)):
     if db_usuario_rol is None:
         raise HTTPException(status_code=404, detail="El usuario_rol no existe")
     return db_usuario_rol
+
+
+@usuario_rol_routes.post("/usuarios_roles", response_model=schemas.UsuarioRol)
+def crear_usuario_rol(usuario_rol: schemas.UsuarioRol, db: Session = Depends(get_db)):
+    db_usuario_rol = crud.obtener_usuario_rol_por_rol_ID(db=db, id=usuario_rol.rol_ID)
+    if db_usuario_rol:
+        raise HTTPException(status_code=400, detail="El usuario_rol ya existe")
+    return crud.crear_usuario_rol(db=db, usuario_rol=usuario_rol)
+
+@usuario_rol_routes.put("/usuarios_roles/{id}", response_model=schemas.UsuarioRol)
+def actualizar_usuario_rol(id: int, usuario_rol: schemas.UsuarioRolCreate, db: Session = Depends(get_db)):
+    db_usuario_rol = crud.obtener_usuario_rol_por_usuario_ID(db=db, id=id)
+    if db_usuario_rol is None:
+        raise HTTPException(status_code=404, detail="El usuario_rol no existe")
+    return crud.actualizar_usuario_rol(db=db, usuario_rol=usuario_rol)
+
+

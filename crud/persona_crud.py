@@ -13,16 +13,6 @@ def obtener_todas_las_personas(db: Session, skip: int = 0, limit: int = 10):
 def obtener_persona_por_rfc(db: Session, rfc: str):
     return db.query(Personas).filter(Personas.rfc == rfc).first()
 
-# def obtener_personas_por_ID(db: Session, id: int):
-#     return db.query(Personas).filter(Personas.id == id).first()
-
-# def crear_persona(db: Session, persona: schemas.PersonaCreate):
-#     db_persona = Personas(**persona.model_dump())
-#     db.add(db_persona)
-#     db.commit()
-#     db.refresh(db_persona)
-#     return db_persona
-
 
 def crear_persona(db: Session, persona: schemas.PersonaCreate):
     persona_data = persona.model_dump()

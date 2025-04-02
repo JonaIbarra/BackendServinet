@@ -22,14 +22,14 @@ def obtener_todos_los_roles(skip: int = 0, limit: int = 10, db: Session = Depend
 
 @rol_routes.get("/roles/{nombre}", response_model=schemas.Rol)
 def obtener_rol_por_nombre(nombreRol: str, db: Session = Depends(get_db)):
-    db_rol = crud.obtener_rol_por_nombre(db=db, nombreRol = nombreRol)
+    db_rol = crud.obtener_rol_por_nombre(db=db, nombre_rol = nombreRol)
     if db_rol is None:
         raise HTTPException(status_code=404, detail="El rol no existe")
     return db_rol  
 
 @rol_routes.post("/roles", response_model=schemas.Rol)
 def crear_rol(rol: schemas.RolCreate, db: Session = Depends(get_db)):
-    db_rol = crud.obtener_rol_por_nombre(db=db, nombreRol = rol.nombre_rol)
+    db_rol = crud.obtener_rol_por_nombre(db=db, nombre_rol = rol.nombre_rol)
     if db_rol:
         raise HTTPException(status_code=400, detail="El rol ya existe")
     return crud.crear_rol(db=db, rol=rol)
