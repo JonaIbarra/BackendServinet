@@ -1,10 +1,10 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Body
 from sqlalchemy.orm import Session
 from config.db import SessionLocal
 from crud import persona_crud as crud
 from models.persona_model import Personas
 from schemas import persona_schema as schemas
-from typing import List
+from typing import List, Annotated
 
 persona_routes = APIRouter()
 
@@ -44,7 +44,51 @@ def crear_personas(
 
 @persona_routes.post("/registro", response_model=dict)
 def crear_persona(
-    persona_data: schemas.PersonaCreate,
+    persona_data: Annotated[
+        schemas.PersonaCreate,
+        Body(
+            examples={
+                "persona_fisica": {
+                    "summary": "Registro de persona física",
+                    "description": "Ejemplo de cómo registrar una persona física con todos sus datos.",
+                    "value": {
+                        "tipo": "Fisica",
+                        "datos_generales": {
+                            "rfc": "ABC123456XYZ",
+                            "estatus": 1
+                        },
+                        "datos_especificos": {
+                            "nombre": "Juan",
+                            "apellido_paterno": "Pérez",
+                            "apellido_materno": "López",
+                            "genero": "Masculino",
+                            "curp": "CURP123456HDFLZR01",
+                            "titulo_cortesia": "Sr.",
+                            "direccion": "Calle Falsa 123",
+                            "fecha_nacimiento": "1990-01-01",
+                            "estatus": 1
+                        }
+                    }
+                },
+                "persona_moral": {
+                    "summary": "Registro de persona moral",
+                    "description": "Ejemplo de cómo registrar una persona moral con su razón social.",
+                    "value": {
+                        "tipo": "Moral",
+                        "datos_generales": {
+                            "rfc": "XYZ654321ABC",
+                            "estatus": 1
+                        },
+                        "datos_especificos": {
+                            "razon_social": "Empresa S.A. de C.V.",
+                            "direccion": "Av. Empresa 456",
+                            "estatus": 1
+                        }
+                    }
+                }
+            }
+        )
+    ],
     db: Session = Depends(get_db)
 ):
     # Validar RFC único
@@ -59,7 +103,6 @@ def crear_persona(
         "rfc": persona_creada.rfc,
         "estatus": persona_creada.estatus
     }
-
 
 
 @persona_routes.put("/personas/{id}", response_model=schemas.Persona)
