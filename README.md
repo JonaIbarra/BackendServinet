@@ -1,4 +1,4 @@
-API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, PostgreSQL/MySQL, autenticación JWT y una estructura limpia y mantenible.
+API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, MySQL, autenticación JWT y una estructura limpia y mantenible.
 
 ```markdown
 
@@ -19,7 +19,7 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 - Passlib 1.7.4
 
 ### **Base de Datos**
-- MySQL/PostgreSQL
+- MySQL
 
 ### **Utilidades**
 - Pydantic 2.7.4 (validación)
@@ -43,10 +43,10 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 git clone https://github.com/tu-usuario/tu-repo.git
 cd BackendServiNet
 
-#Crear entorno virtual en CMD
+# Crear entorno virtual en CMD
 python -m venv .venv
 
-:: Activar entorno
+# Activar entorno
 .venv\Scripts\activate.bat
 
 ```
@@ -101,7 +101,6 @@ async def crear_categoria(categoria: schemas.CategoriaCreate):
 
 ## EJEMPLO Login (Obtener JWT):
 ```http
-http
 POST /auth/login
 Content-Type: application/json
 
@@ -141,6 +140,8 @@ Accede a la documentación automática:
 
 
 🗂️ Estructura de Carpetas
+
+ ```
 BackendServiNet/
 │
 ├── config/              # Configuración general del sistema
@@ -154,6 +155,6 @@ BackendServiNet/
 ├── main.py              # Punto de entrada principal
 ├── README.md            # Documentación
 ├── requirements.txt     # Dependencias del proyecto
-
+ ```
 
 ```
