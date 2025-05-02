@@ -1,5 +1,5 @@
 
-API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, PostgreSQL/MySQL, autenticación JWT y una estructura limpia y mantenible.
+API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, MySQL, autenticación JWT y una estructura limpia y mantenible.
 
 ````markdown
 # API con FastAPI, PostgreSQL/MySQL y Autenticación JWT
@@ -20,7 +20,7 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 - Passlib 1.7.4
 
 ### **Base de Datos**
-- MySQL/PostgreSQL
+- MySQL
 
 ### **Utilidades**
 - Pydantic 2.7.4 (validación)
