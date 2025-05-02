@@ -6,11 +6,6 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 
 
 
-![FastAPI](![image](https://github.com/user-attachments/assets/099c091a-a6a6-4d5c-ae29-e2f31b448993)
-)
-![Python](![image](https://github.com/user-attachments/assets/409d25f0-9ab3-4735-bb5b-2307460e1c92)
-)
-
 ## 🛠️ Tecnologías Clave
 
 ### **Backend**
