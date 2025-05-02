@@ -1,10 +1,15 @@
+API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, PostgreSQL/MySQL, autenticación JWT y una estructura limpia y mantenible.
+
 ```markdown
+
 # API con FastAPI, PostgreSQL/MySQL y Autenticación JWT
 
-API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python.
 
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+
+![FastAPI](![image](https://github.com/user-attachments/assets/099c091a-a6a6-4d5c-ae29-e2f31b448993)
+)
+![Python](![image](https://github.com/user-attachments/assets/409d25f0-9ab3-4735-bb5b-2307460e1c92)
+)
 
 ## 🛠️ Tecnologías Clave
 
