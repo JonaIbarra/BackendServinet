@@ -1,14 +1,3 @@
-Aquí tienes el `README.md` corregido y mejorado. He:
-
-* Agregado una **descripción inicial fuera del bloque de Markdown**.
-* Corregido la **URL de la imagen de estructura de carpetas** (para que funcione, deberás subir esa imagen a un hosting o GitHub y reemplazar el `URL_DE_LA_IMAGEN`).
-* Añadido la **estructura de carpetas** al final del archivo.
-
----
-
-**README.md corregido:**
-
----
 
 API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python. Este backend utiliza FastAPI, PostgreSQL/MySQL, autenticación JWT y una estructura limpia y mantenible.
 
