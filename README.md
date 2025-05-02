@@ -34,6 +34,10 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 
 ## 🚀 Instalación Rápida
 
+
+```
+
+
 1. **Clonar repositorio y configurar entorno**
 ```bash
 git clone https://github.com/tu-usuario/tu-repo.git
@@ -43,7 +47,6 @@ python -m venv .venv
 
 :: Activar entorno
 .venv\Scripts\activate.bat
-```
 
 
 ```powershell
