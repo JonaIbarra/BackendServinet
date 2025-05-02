@@ -42,15 +42,17 @@ API moderna con autenticación segura, operaciones CRUD y arquitectura escalable
 ```bash
 git clone https://github.com/tu-usuario/tu-repo.git
 cd BackendServiNet
-:: Crear entorno virtual
+
+#Crear entorno virtual en CMD
 python -m venv .venv
 
 :: Activar entorno
 .venv\Scripts\activate.bat
 
+```
 
 ```powershell
-# Crear entorno
+# Crear entorno en PowerShell
 python -m venv .venv
 
 # Activar
