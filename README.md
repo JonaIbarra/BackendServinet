@@ -1,96 +1,98 @@
-# 📦 FastAPI - API de Gestión de Usuarios
+```markdown
+# API con FastAPI, PostgreSQL/MySQL y Autenticación JWT
 
-Bienvenido a la API de Gestión de Usuarios desarrollada con **FastAPI**. Esta API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos de usuarios.
+API moderna con autenticación segura, operaciones CRUD y arquitectura escalable usando tecnologías Python.
 
-## 🚀 Tecnologías utilizadas
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [Uvicorn](https://www.uvicorn.org/) como servidor ASGI
-- [SQLAlchemy](https://www.sqlalchemy.org/) para ORM
-- [Pydantic](https://docs.pydantic.dev/) para validación de datos
-- [SQLite](https://www.sqlite.org/index.html) como base de datos (puede reemplazarse fácilmente por PostgreSQL, MySQL, etc.)
+## 🛠️ Tecnologías Clave
 
----
+### **Backend**
+- FastAPI 0.114.0
+- Uvicorn 0.30.1
+- SQLAlchemy 2.0.31
 
-## 📁 Estructura del proyecto
+### **Seguridad**
+- Bcrypt 4.2.1
+- PyJWT 2.8.0
+- Passlib 1.7.4
 
-📦 fastapi-users-api ├── app │ ├── main.py │ ├── models.py │ ├── schemas.py │ ├── crud.py │ └── database.py ├── requirements.txt └── README.md
+### **Base de Datos**
+- MySQL/PostgreSQL
 
-yaml
-Copiar
-Editar
+### **Utilidades**
+- Pydantic 2.7.4 (validación)
+- Python-dotenv 1.0.1
 
----
+## ⚙️ Requisitos
 
-## ⚙️ Instalación
+- Python 3.10+
+- MySQL 8+ o PostgreSQL 14+
+- Pip 23+
+- Git 2.38+
 
-### 1. Clona el repositorio
+## 🚀 Instalación Rápida
 
+1. **Clonar repositorio y configurar entorno**
 ```bash
-git clone https://github.com/tu_usuario/fastapi-users-api.git
-cd fastapi-users-api
-2. Crea un entorno virtual (opcional pero recomendado)
-bash
-Copiar
-Editar
-python -m venv env
-source env/bin/activate  # En Windows: env\Scripts\activate
-3. Instala las dependencias
-bash
-Copiar
-Editar
+git clone https://github.com/tu-usuario/tu-repo.git
+cd BackendServiNet
+source .EntornoVirtual/Scripts/activate.bat
+```
+
+2. **Instalar dependencias**
+```bash
 pip install -r requirements.txt
-▶️ Ejecución del servidor
-bash
-Copiar
-Editar
+```
+
+3. **Configurar variables de entorno**
+Crear archivo `.env` con:
+```env
+SECRET_KEY=tu_clave_secreta
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+DATABASE_URL=mysql://usuario:contraseña@localhost:3306/nombre_bd
+```
+
+4. **Iniciar servidor**
+```bash
 uvicorn app.main:app --reload
-Esto levantará la API en: http://127.0.0.1:8000
+```
 
-📚 Documentación automática
-FastAPI genera documentación automáticamente:
+## 🔒 Autenticación JWT
 
-Swagger UI: http://127.0.0.1:8000/docs
+Ejemplo de ruta protegida:
+```python
+from fastapi import Depends
 
-Redoc: http://127.0.0.1:8000/redoc
+@categorias_routes.post("/categorias", 
+                      response_model=schemas.Categorias, 
+                      dependencies=[Depends(Portador())])
+async def crear_categoria(categoria: schemas.CategoriaCreate):
+    # Lógica del endpoint
+    return ...
+```
 
-📌 Endpoints principales
+### Funcionamiento de la autenticación:
+1. Cliente envía credenciales a `/login`
+2. Servidor valida y devuelve JWT
+3. Cliente incluye token en cabecera:
+   ```http
+   Authorization: Bearer {token}
+   ```
 
-Método	Ruta	Descripción
-GET	/users/	Listar todos los usuarios
-GET	/users/{id}	Obtener usuario por ID
-POST	/users/	Crear nuevo usuario
-PUT	/users/{id}	Actualizar usuario existente
-DELETE	/users/{id}	Eliminar usuario por ID
-🧪 Pruebas (opcional)
-Si tienes pruebas automatizadas, puedes indicarlo así:
+## 📌 Características Principales
 
-bash
-Copiar
-Editar
-pytest
-📝 Notas adicionales
-Esta API está pensada como base para proyectos más complejos.
+- Registro y autenticación de usuarios
+- CRUD completo con validación Pydantic
+- Modelos de base de datos con SQLAlchemy ORM
+- Configuración centralizada con variables de entorno
+- Documentación interactiva (Swagger UI en `/docs`)
 
-Puedes integrar autenticación con JWT, OAuth2 o cualquier otro mecanismo.
+## 📚 Documentación Adicional
 
-📩 Contacto
-Creado por Jonathan Enrique Ibarra Canales – ¡Con gusto puedes contribuir o dejar tus sugerencias!
-
-🪪 Licencia
-Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-yaml
-Copiar
-Editar
-
----
-
-Si quieres que te lo genere como archivo `.md` listo para descarga, solo dime y te lo creo como archivo adjunto 📄👇.
-
-
-
-
-
-
-
+Accede a la documentación automática:
+- Swagger UI: `http://localhost:8000/docs`
+- Redoc: `http://localhost:8000/redoc`
+```
